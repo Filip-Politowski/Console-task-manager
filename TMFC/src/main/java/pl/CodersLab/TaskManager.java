@@ -3,36 +3,38 @@ package pl.CodersLab;
 import java.io.IOException;
 
 
-
-
 public class TaskManager {
     public static void main(String[] args) throws IOException {
-        String[][] dataFromFile = FileManagement.readFromFile("tasks.csv");
+
         options.optionsDisplay();
         String input;
 
 
         do {
+            String[][] dataFromFile = FileManagement.readFromFile("tasks.csv");
 
             switch (input = options.getOption()) {
                 case "add":
-                    System.out.println("Add");
+                    FileManagement.writeToFile("tasks.csv",options.add());
+                    options.optionsDisplay();
                     break;
                 case "remove":
                     System.out.println("Remove");
+                    options.optionsDisplay();
                     break;
                 case "list":
-                    System.out.println("List");
+                    options.List(dataFromFile);
+                    options.optionsDisplay();
                     break;
                 case "exit":
-                    System.out.println("exit");
                     break;
                 default:
                     System.out.println("invalid input");
+                    options.optionsDisplay();
                     break;
 
             }
-        }while (!"exit".equals(input));
+        } while (!"exit".equals(input));
 
     }
 

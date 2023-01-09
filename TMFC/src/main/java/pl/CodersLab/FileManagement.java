@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class FileManagement {
@@ -20,7 +22,16 @@ public class FileManagement {
         }
         return elementsInRows;
     }
-    public static void saveToFile(String fileName){
+
+    public static void writeToFile(String fileName, String userText) {
+
+        Path path = Paths.get(fileName);
+
+        try {
+            Files.writeString(path, userText, StandardOpenOption.APPEND);
+        } catch (IOException ex) {
+            System.out.println("Nie można zapisać pliku.");
+        }
 
     }
 }
