@@ -8,4 +8,11 @@ Console program for managing tasks
 ──║║─║╔═╗║╚═╝║║║╚╗║║║║║║╔═╗║║─║║║╔═╗║╚╩═║╚══╣║║╚╗║║──║╚═╝║║║╚╗║╚═╝║╚═╝║║─║║║╚═╝║╚═╝║╚═╝║╚══╗
 ──╚╝─╚╝─╚╩═══╩╝╚═╝╚╝╚╝╚╩╝─╚╩╝─╚═╩╝─╚╩═══╩═══╩╝╚═╝╚╝──╚═══╩╝╚═╝╚═══╩═══╩╝─╚═╩═══╩═══╩═══╩═══╝
 
-
+To do:
+1 display all available tasks 
+2 quit from aplication
+3 adding tasks
+4 deleting tasks
+5 loading data from file during start
+6 save data to file
+7 checking corectness of number value during deleting
