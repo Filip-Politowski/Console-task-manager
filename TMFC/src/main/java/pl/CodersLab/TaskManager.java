@@ -33,16 +33,10 @@ public class TaskManager {
                     options.optionsDisplay();
                     break;
                 case "exit":
-                    System.out.println("\n" +
-                            "███████╗██╗░░░░░░█████╗░░█████╗░░█████╗░\n" +
-                            "██╔════╝██║░░░░░██╔══██╗██╔══██╗██╔══██╗\n" +
-                            "█████╗░░██║░░░░░██║░░██║██║░░██║██║░░██║\n" +
-                            "██╔══╝░░██║░░░░░██║░░██║██║░░██║██║░░██║\n" +
-                            "███████╗███████╗╚█████╔╝╚█████╔╝╚█████╔╝\n" +
-                            "╚══════╝╚══════╝░╚════╝░░╚════╝░░╚════╝░");
+                    options.exit();
                     break;
                 default:
-                    System.out.println(RED +"invalid input" + RESET);
+                    System.out.println(RED + "invalid input" + RESET);
                     options.optionsDisplay();
                     break;
 
