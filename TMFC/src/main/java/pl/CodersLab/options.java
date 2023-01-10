@@ -2,7 +2,7 @@ package pl.CodersLab;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Scanner;
 
 import static pl.CodersLab.ConsoleColors.BLUE;
@@ -56,5 +56,31 @@ public class options {
         return stringBuilder.toString();
     }
 
+    public static void remove(int numberOfRow) throws IOException {
+        String[][] remover = FileManagement.readFromFile("tasks.csv");
+        StringBuilder stringBuilder = new StringBuilder();
 
+
+        for (int i1 = 0; i1 < remover[numberOfRow].length; i1++) {
+            remover[numberOfRow][i1] = StringUtils.remove("", remover[numberOfRow][i1]);
+            System.out.println(remover[numberOfRow][i1]);
+        }
+        for (int i = 0; i < remover.length; i++) {
+            if (i == numberOfRow) continue;
+            for (int i1 = 0; i1 < remover[i].length; i1++) {
+
+                if (i1 == remover[i1].length - 1) {
+                    stringBuilder.append(remover[i][i1]);
+                    stringBuilder.append("\n");
+                    break;
+                } else {
+                    stringBuilder.append(remover[i][i1]).append(",").append(" ");
+                }
+            }
+        }
+
+
+        FileManagement.writeToFile("tasks.csv", stringBuilder.toString().trim());
+
+    }
 }
