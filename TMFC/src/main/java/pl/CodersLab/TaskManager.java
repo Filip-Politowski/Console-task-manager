@@ -2,7 +2,6 @@ package pl.CodersLab;
 
 import java.io.IOException;
 
-
 public class TaskManager {
     public static void main(String[] args) throws IOException {
 
@@ -11,19 +10,24 @@ public class TaskManager {
 
 
         do {
-            String[][] dataFromFile = FileManagement.readFromFile("tasks.csv");
+
+            String[][] dataFromFile = FileManagement.readFromFile("TMFC/tasks.csv");
 
             switch (input = options.getOption()) {
                 case "add":
-                    FileManagement.writeToFileAppend("tasks.csv", options.add());
+                    FileManagement.writeToFileAppend("TMFC/tasks.csv", options.add());
                     options.optionsDisplay();
                     break;
                 case "remove":
-                    options.remove(Integer.parseInt(options.getOption()));
+
+
+                    options.remove(Integer.parseInt(options.getOption()), FileManagement.readFromFile("TMFC/tasks.csv"));
+
                     options.optionsDisplay();
                     break;
                 case "list":
                     options.List(dataFromFile);
+
                     options.optionsDisplay();
                     break;
                 case "exit":

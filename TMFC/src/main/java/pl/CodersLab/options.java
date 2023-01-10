@@ -1,5 +1,6 @@
 package pl.CodersLab;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -56,31 +57,26 @@ public class options {
         return stringBuilder.toString();
     }
 
-    public static void remove(int numberOfRow) throws IOException {
-        String[][] remover = FileManagement.readFromFile("tasks.csv");
+    public static void remove(int numberOfRow, String[][] tasks) throws IOException {
+
         StringBuilder stringBuilder = new StringBuilder();
 
+        tasks = ArrayUtils.remove(tasks, numberOfRow);
+        for (int i = 0; i < tasks.length; i++) {
+            for (int i1 = 0; i1 < tasks[i].length; i1++) {
 
-        for (int i1 = 0; i1 < remover[numberOfRow].length; i1++) {
-            remover[numberOfRow][i1] = StringUtils.remove("", remover[numberOfRow][i1]);
-            System.out.println(remover[numberOfRow][i1]);
-        }
-        for (int i = 0; i < remover.length; i++) {
-            if (i == numberOfRow) continue;
-            for (int i1 = 0; i1 < remover[i].length; i1++) {
-
-                if (i1 == remover[i1].length - 1) {
-                    stringBuilder.append(remover[i][i1]);
-                    stringBuilder.append("\n");
+                if (i1 == tasks[i].length - 1) {
+                    stringBuilder.append(tasks[i][i1]);
                     break;
                 } else {
-                    stringBuilder.append(remover[i][i1]).append(",").append(" ");
+                    stringBuilder.append(tasks[i][i1]).append(",");
                 }
             }
+            stringBuilder.append("\n");
         }
 
 
-        FileManagement.writeToFile("tasks.csv", stringBuilder.toString().trim());
+        FileManagement.writeToFile("TMFC/tasks.csv", stringBuilder.toString().trim());
 
     }
 }
