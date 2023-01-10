@@ -3,7 +3,6 @@ package pl.CodersLab;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import static pl.CodersLab.ConsoleColors.BLUE;
@@ -22,6 +21,24 @@ public class options {
     public static String getOption() {
         Scanner scanner = new Scanner(System.in);
         return StringUtils.deleteWhitespace(scanner.nextLine().toLowerCase());
+    }
+
+    public static int getNumber() {
+        Scanner scanner = new Scanner(System.in);
+        int numberOfRow;
+        while (true) {
+            try {
+                numberOfRow = Integer.parseInt(scanner.nextLine());
+                if (numberOfRow < 0) {
+                    System.out.println("Insert number equals or greater than 0");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Wrong format, insert number equals or greater than 0 ");
+            }
+        }
+        return numberOfRow;
     }
 
     public static void List(String[][] tasks) {
@@ -57,11 +74,22 @@ public class options {
         return stringBuilder.toString();
     }
 
-    public static void remove(int numberOfRow, String[][] tasks) throws IOException {
-
+    public static void remove(String[][] tasks) {
+        int numberOfRow = getNumber();
         StringBuilder stringBuilder = new StringBuilder();
 
-        tasks = ArrayUtils.remove(tasks, numberOfRow);
+
+        while (true) {
+            if (numberOfRow < tasks.length) {
+                tasks = ArrayUtils.remove(tasks, numberOfRow);
+                break;
+            } else {
+                System.out.println("That element not exist in tab, last index of tab equals: " + (tasks.length - 1));
+                numberOfRow = getNumber();
+            }
+        }
+
+
         for (int i = 0; i < tasks.length; i++) {
             for (int i1 = 0; i1 < tasks[i].length; i1++) {
 

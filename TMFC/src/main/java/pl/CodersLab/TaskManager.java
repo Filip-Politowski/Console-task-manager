@@ -20,8 +20,7 @@ public class TaskManager {
                     break;
                 case "remove":
 
-
-                    options.remove(Integer.parseInt(options.getOption()), FileManagement.readFromFile("TMFC/tasks.csv"));
+                    options.remove(FileManagement.readFromFile("TMFC/tasks.csv"));
 
                     options.optionsDisplay();
                     break;
