@@ -2,37 +2,53 @@ package pl.CodersLab;
 
 import java.io.IOException;
 
-
-
+import static pl.CodersLab.ConsoleColors.RED;
+import static pl.CodersLab.ConsoleColors.RESET;
 
 public class TaskManager {
     public static void main(String[] args) throws IOException {
-        String[][] dataFromFile = FileManagement.readFromFile("tasks.csv");
+
         options.optionsDisplay();
         String input;
 
 
         do {
 
+            String[][] dataFromFile = FileManagement.readFromFile("TMFC/tasks.csv");
+
             switch (input = options.getOption()) {
                 case "add":
-                    System.out.println("Add");
+                    FileManagement.writeToFileAppend("TMFC/tasks.csv", options.add());
+                    options.optionsDisplay();
                     break;
                 case "remove":
-                    System.out.println("Remove");
+
+                    options.remove(FileManagement.readFromFile("TMFC/tasks.csv"));
+
+                    options.optionsDisplay();
                     break;
                 case "list":
-                    System.out.println("List");
+                    options.List(dataFromFile);
+
+                    options.optionsDisplay();
                     break;
                 case "exit":
-                    System.out.println("exit");
+                    System.out.println("\n" +
+                            "███████╗██╗░░░░░░█████╗░░█████╗░░█████╗░\n" +
+                            "██╔════╝██║░░░░░██╔══██╗██╔══██╗██╔══██╗\n" +
+                            "█████╗░░██║░░░░░██║░░██║██║░░██║██║░░██║\n" +
+                            "██╔══╝░░██║░░░░░██║░░██║██║░░██║██║░░██║\n" +
+                            "███████╗███████╗╚█████╔╝╚█████╔╝╚█████╔╝\n" +
+                            "╚══════╝╚══════╝░╚════╝░░╚════╝░░╚════╝░");
                     break;
                 default:
-                    System.out.println("invalid input");
+                    System.out.println(RED +"invalid input" + RESET);
+                    options.optionsDisplay();
                     break;
 
+
             }
-        }while (!"exit".equals(input));
+        } while (!"exit".equals(input));
 
     }
 
