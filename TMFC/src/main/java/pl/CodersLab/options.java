@@ -5,17 +5,17 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Scanner;
 
-import static pl.CodersLab.ConsoleColors.BLUE;
-import static pl.CodersLab.ConsoleColors.RESET;
+import static pl.CodersLab.ConsoleColors.*;
 
 public class options {
     public static void optionsDisplay() {
-        System.out.println(BLUE + "Pleas select an option:");
-        System.out.print(RESET);
+        System.out.println(BLUE + "Pleas select an option:" + RESET);
         String[] options = {"Add", "Remove", "List", "Exit"};
+        System.out.print(PURPLE_BOLD);
         for (String option : options) {
             System.out.println(option);
         }
+        System.out.print(RESET);
     }
 
     public static String getOption() {
@@ -30,12 +30,13 @@ public class options {
             try {
                 numberOfRow = Integer.parseInt(scanner.nextLine());
                 if (numberOfRow < 0) {
-                    System.out.println("Insert number equals or greater than 0");
+                    System.out.println(RED + "Insert number equals or greater than 0" + RESET);
                 } else {
                     break;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Wrong format, insert number equals or greater than 0 ");
+                System.out.println(RED + "Wrong format, insert number equals or greater than 0 " + RESET);
+
             }
         }
         return numberOfRow;
@@ -43,13 +44,19 @@ public class options {
 
     public static void List(String[][] tasks) {
         for (int i = 0; i < tasks.length; i++) {
+            System.out.print(YELLOW);
             System.out.print(i + ": ");
             for (int i1 = 0; i1 < tasks[i].length; i1++) {
                 System.out.print(tasks[i][i1]);
             }
             System.out.println();
         }
+        System.out.print(RESET);
     }
+
+
+
+
 
     public static String add() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -71,10 +78,15 @@ public class options {
                 count++;
             }
         }
+        System.out.println(GREEN + "Element added successfully" + RESET);
+
         return stringBuilder.toString();
     }
 
     public static void remove(String[][] tasks) {
+
+        System.out.println("Insert the number of row: ");
+
         int numberOfRow = getNumber();
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -84,7 +96,7 @@ public class options {
                 tasks = ArrayUtils.remove(tasks, numberOfRow);
                 break;
             } else {
-                System.out.println("That element not exist in tab, last index of tab equals: " + (tasks.length - 1));
+                System.out.println(RED + "That element not exist in tab, last index of tab equals: " + (tasks.length - 1) + RESET);
                 numberOfRow = getNumber();
             }
         }
@@ -102,6 +114,8 @@ public class options {
             }
             stringBuilder.append("\n");
         }
+
+        System.out.println(GREEN + "Element deleted successfully" + RESET);
 
 
         FileManagement.writeToFile("TMFC/tasks.csv", stringBuilder.toString().trim());

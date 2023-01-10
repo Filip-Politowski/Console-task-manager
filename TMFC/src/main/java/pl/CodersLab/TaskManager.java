@@ -2,6 +2,9 @@ package pl.CodersLab;
 
 import java.io.IOException;
 
+import static pl.CodersLab.ConsoleColors.RED;
+import static pl.CodersLab.ConsoleColors.RESET;
+
 public class TaskManager {
     public static void main(String[] args) throws IOException {
 
@@ -39,7 +42,7 @@ public class TaskManager {
                             "╚══════╝╚══════╝░╚════╝░░╚════╝░░╚════╝░");
                     break;
                 default:
-                    System.out.println("invalid input");
+                    System.out.println(RED +"invalid input" + RESET);
                     options.optionsDisplay();
                     break;
 
