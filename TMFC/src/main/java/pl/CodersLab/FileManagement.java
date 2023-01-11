@@ -44,7 +44,7 @@ public class FileManagement {
         }
 
     }
-    public static List<String> readFromFileList(String fileName) throws IOException {
+ /*   public static List<String> readFromFileList(String fileName) throws IOException {
         Path path = Paths.get(fileName);
 
         List<String> lines = Files.readAllLines(path);
@@ -55,5 +55,5 @@ public class FileManagement {
             elementsInRows[i] = taskRows[i].split(",");
         }
         return lines;
-    }
+    }*/
 }
